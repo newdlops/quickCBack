@@ -1,0 +1,5 @@
+노데몬 인스톨(글로벌)
+npm install -g nodemon
+npm install nodemon -g -D
+노데몬 실행(감시할 폴더 실행 파일)
+nodemon --watch src/ src/index.js
