@@ -18,3 +18,6 @@ export const findProjectByUser = async (req : CustomRequest<IUserModel>, res : R
   const result = await projectService.findProjectByUser(user)
   res.json({status:200, msg:result})
 }
+
+export const getProjectDetail = () => {
+}

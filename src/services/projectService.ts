@@ -6,7 +6,7 @@ import * as userService from '../services/userService'
 export async function createProject(form: IProjectModel) {
   try {
     const newProject = new ProjectModel(form)
-    await newProject.save()
+    return await newProject.save()
   } catch(err) {
     logger.error(err)
   }

@@ -1,9 +1,11 @@
 import mongoose from 'mongoose'
 import { logger } from './logger'
+import process from 'process'
+import { dburl } from './local'
 
 export default class Database {
 
-  private databaseUrl = "mongodb://root:quickc@52.79.147.106:27017"
+  private databaseUrl = process.env.QUCKCPRODUCTION ? '' : dburl
   public database: mongoose.Connection
 
   constructor() {

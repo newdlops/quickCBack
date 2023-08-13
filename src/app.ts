@@ -7,6 +7,7 @@ import { logger } from '../config/logger'
 import { morganMiddleware } from '../config/morgan'
 import productRouter from './routers/productRouter'
 import projectRouter from './routers/projectRouter'
+import projectItemRouter from './routers/projectItemRouter'
 
 export const app = express()
 const PORT = 3000
@@ -49,6 +50,7 @@ app.use(morganMiddleware)
 //스웨거 페이지
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 app.use('/project', projectRouter)
+app.use('/projectItem', projectItemRouter)
 app.use('/user', userRouter)
 app.use('/product', productRouter)
 

@@ -5,7 +5,7 @@ import CertificationModel, { ICertificationModel } from '../models/certification
 export async function createCertification(cert: ICertificationModel) {
   try {
     const newCert = new CertificationModel(cert)
-    await newCert.save()
+    return await newCert.save()
   } catch(err) {
     logger.error(err)
   }
