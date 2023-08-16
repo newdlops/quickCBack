@@ -10,6 +10,15 @@ export async function createProduct(product: IProductModel) {
   }
 }
 
+
+export async function createProductBulk(product: IProductModel[]) {
+  try {
+    return await ProductModel.insertMany(product)
+  } catch (err) {
+    logger.error('Error', err)
+  }
+}
+
 export async function updateProduct(product: IProductModel) {
   try {
     const updatedProduct = await ProductModel.findById(product.id)
@@ -24,7 +33,7 @@ export async function updateProduct(product: IProductModel) {
 
 export async function findProduct(keyword: string) {
   try {
-    return await ProductModel.find({ productname: { $regex: `^${keyword}` }}).lean()
+    return await ProductModel.find({ productname: { $regex: `${keyword}` }}).lean()
   } catch(err) {
     logger.error(err)
   }

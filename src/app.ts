@@ -8,6 +8,7 @@ import { morganMiddleware } from '../config/morgan'
 import productRouter from './routers/productRouter'
 import projectRouter from './routers/projectRouter'
 import projectItemRouter from './routers/projectItemRouter'
+import certRouter from './routers/certificationRouter'
 
 export const app = express()
 const PORT = 3000
@@ -53,6 +54,7 @@ app.use('/project', projectRouter)
 app.use('/projectItem', projectItemRouter)
 app.use('/user', userRouter)
 app.use('/product', productRouter)
+app.use('/cert', certRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, TypeScript with Express!')

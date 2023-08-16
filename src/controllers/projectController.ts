@@ -15,9 +15,12 @@ export const createProject = async (req : CustomRequest<IProjectModel>, res : Re
 
 export const findProjectByUser = async (req : CustomRequest<IUserModel>, res : Response) => {
   const user : IUserModel = req.body
-  const result = await projectService.findProjectByUser(user)
+  const result = await projectService.findProjectsByUser(user)
   res.json({status:200, msg:result})
 }
 
-export const getProjectDetail = () => {
+export const getProjectDetail = async (req : CustomRequest<IProjectModel>, res : Response) => {
+  const project : IProjectModel = req.body
+  const result = await projectService.getProjectDetail(project)
+  res.json({status:200, msg:result})
 }

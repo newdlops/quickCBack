@@ -12,8 +12,14 @@ export const createProduct = async (req : CustomRequest<IProductModel>, res : Re
   res.json({status:200, msg:result})
 }
 
+export const createProductBulk = async (req : CustomRequest<IProductModel[]>, res : Response) => {
+  const newProduct : IProductModel[] = req.body
+  const result = await productService.createProductBulk(newProduct)
+  res.json({status:200, msg:result})
+}
+
 export const findProduct = async (req : CustomRequest<{ keyword: string }>, res : Response) => {
   const keyword : string = req.body.keyword
-  const result = await productService.findProduct(keyword)
+  const result = keyword.length < 1 ? [] : await productService.findProduct(keyword)
   res.json({status:200, msg:result})
 }

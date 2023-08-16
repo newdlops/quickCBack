@@ -11,6 +11,14 @@ export async function createProjectItem(projectItem: IProjectItemModel) {
   }
 }
 
+export async function createProjectItemBulk(projectItem: IProjectItemModel[]) {
+  try {
+    return await ProjectItemModel.insertMany(projectItem)
+  } catch(err) {
+    logger.error(err)
+  }
+}
+
 export async function updateProjectItem(projectItem: IProdjectItemModel) {
   try {
     const updatedProjectItem = await ProjectItemModel.findById(projectItem.id)

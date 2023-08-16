@@ -1,11 +1,10 @@
 import mongoose from 'mongoose'
 import { logger } from './logger'
-import process from 'process'
-import { dburl } from './local'
+import QuickCConfig from './config'
 
 export default class Database {
 
-  private databaseUrl = process.env.QUCKCPRODUCTION ? '' : dburl
+  private databaseUrl = QuickCConfig.getDBURL()
   public database: mongoose.Connection
 
   constructor() {

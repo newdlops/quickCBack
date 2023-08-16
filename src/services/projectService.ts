@@ -2,6 +2,7 @@ import { logger } from '../../config/logger'
 import ProjectModel, { IProjectModel } from '../models/projectModel'
 import { IUserModel } from '../models/userModel'
 import * as userService from '../services/userService'
+import * as projectItemService from '../services/projectItemService'
 
 export async function createProject(form: IProjectModel) {
   try {
@@ -14,21 +15,35 @@ export async function createProject(form: IProjectModel) {
 
 export async function updateProject(project: IProjectModel) {
   try {
-    const updatedProduct = await ProjectModel.findById(project.id)
+    const updatedProject = await ProjectModel.findById(project.id)
     Object.keys(project).forEach(key => {
-      updatedProduct[key] = project[key] as IProjectModel
+      updatedProject[key] = project[key] as IProjectModel
     })
-    return await updatedProduct.save()
+    return await updatedProject.save()
   } catch (err) {
     logger.error('Error', err)
   }
 }
 
-export async function findProjectByUser(user: IUserModel) {
+export async function findProjectsByUser(user: IUserModel){
   try {
     const projectUser = await userService.findUser(user)
-    return await ProjectModel.find({ requestUser: projectUser }).lean()
-  } catch (err) {
+    const result = await ProjectModel.find({ requestUser: projectUser }).lean()
+    return result
+  }
+  catch (err) {
+    logger.error('Error', err)
+  }
+}
+
+export async function getProjectDetail(project: IProjectModel) {
+  try {
+    const projectItemList = await projectItemService.findProjectItemByProject(project)
+    const result = await ProjectModel.findById(project._id).lean()
+    result.projectItems = [...projectItemList]
+    return result
+  }
+  catch (err) {
     logger.error('Error', err)
   }
 }
