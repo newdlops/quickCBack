@@ -9,6 +9,7 @@ import productRouter from './routers/productRouter'
 import projectRouter from './routers/projectRouter'
 import projectItemRouter from './routers/projectItemRouter'
 import certRouter from './routers/certificationRouter'
+import cors from 'cors'
 
 export const app = express()
 const PORT = 3000
@@ -42,6 +43,10 @@ const options = {
 }
 const specs = swaggerJsdoc(options)
 
+const corsOptions = {
+  origin: ['http://localhost:3001'],
+}
+app.use(cors(corsOptions))
 app.use(
   express.json({
     limit: `100mb`,
