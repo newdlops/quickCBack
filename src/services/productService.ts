@@ -4,7 +4,7 @@ import ProductModel, { IProductModel } from '../models/productModel'
 export async function createProduct(product: IProductModel) {
   try {
     const newProduct = new ProductModel(product)
-    await newProduct.save()
+    return await newProduct.save()
   } catch(err) {
     logger.error(err)
   }

@@ -4,7 +4,8 @@
   "description": "quickC_Backend",
   "main": "app.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "run": "nodemon"
   },
   "author": "lky",
   "license": "ISC",
