@@ -18,6 +18,8 @@ export interface IProductModel extends Document {
   description: string;
   createdAt: Date;
   updatedAt: Date;
+  deletedAt: Date;
+  isDelete: boolean;
 }
 
 
@@ -44,6 +46,8 @@ const productSchema = new Schema({
   testingLaboratory: { type: String, required: false },
   /* 팁 */
   tip: { type: String, required: false },
+  isDelete: { type: Boolean, required: false },
+  deletedAt: { type: Date, required: false },
 }, { timestamps: true })
 
 const ProductModel = mongoose.model<IProductModel>('Product', productSchema)
