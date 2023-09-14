@@ -25,13 +25,18 @@ export const findDocument = async (req : CustomRequest<IDocumentModel>, res : Re
   res.json({status:200, msg:result})
 }
 
+export const getAllDocument = async (req : CustomRequest<IDocumentModel>, res : Response) => {
+  const result = await documentService.getAllDocument()
+  res.json({status:200, msg:result})
+}
+
 export const findDocumentById = async (req : Request, res : Response) => {
   const DocumentId = req.params.id
   const result = await documentService.findDocumentById(DocumentId)
   res.json({status:200, msg:result})
 }
 
-export const Documents = async (req : Request, res : Response) => {
+export const documents = async (req : Request, res : Response) => {
   const page = parseInt(req.query.page as string) ?? 1
   const itemsPerPage = parseInt(req.query.itemsPerPage as string) ?? 10
   const sortField = req.query.sortField as string

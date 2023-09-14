@@ -31,6 +31,14 @@ export async function findDocument(document: IDocumentModel) {
   }
 }
 
+export async function getAllDocument() {
+  try {
+    return await DocumentModel.find()
+  } catch (err) {
+    logger.error('Error', err)
+  }
+}
+
 export async function findDocumentById(id: string) {
   try {
     return await DocumentModel.findById(id)

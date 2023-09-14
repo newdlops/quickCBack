@@ -7,7 +7,7 @@ export async function createProduct(product: IProductModel) {
     const newProduct = new ProductModel(product)
     return await newProduct.save()
   } catch(err) {
-    logger.error(err)
+    logger.error('Error',err)
   }
 }
 
@@ -22,7 +22,7 @@ export async function createProductBulk(product: IProductModel[]) {
 
 export async function updateProduct(product: IProductModel) {
   try {
-    const updatedProduct = await ProductModel.findById(product.id)
+    const updatedProduct = await ProductModel.findById(product._id)
     Object.keys(product).forEach(key => {
       updatedProduct[key] = product[key] as IProductModel
     })

@@ -7,5 +7,6 @@ laboratoryRouter.post('/laboratory', asyncHandler(LaboratoryController.createLab
 laboratoryRouter.get('/laboratory/:id', asyncHandler(LaboratoryController.findLaboratoryById))
 laboratoryRouter.get('/laboratorys', asyncHandler(LaboratoryController.laboratorys))
 laboratoryRouter.put('/laboratory/:id', asyncHandler(LaboratoryController.updateLaboratory))
+laboratoryRouter.get('/getAllLab', asyncHandler(LaboratoryController.getAllLaboratories))
 
 export default laboratoryRouter

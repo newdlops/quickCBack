@@ -39,7 +39,7 @@ export async function findLaboratoryById(id: string) {
   }
 }
 
-export async function getLaboratorys(page: number, itemsPerPage: number, sortField: string, sortOrder: SortOrder, globalFilter: string) {
+export async function getLaboratories(page: number, itemsPerPage: number, sortField: string, sortOrder: SortOrder, globalFilter: string) {
   const startIndex = (page) * itemsPerPage
   try {
     const sortcriteria = sortField ? { [sortField]: sortOrder} : null
@@ -47,6 +47,14 @@ export async function getLaboratorys(page: number, itemsPerPage: number, sortFie
     const result = await LaboratoryModel.find(filters).skip(startIndex).limit(itemsPerPage).sort(sortcriteria)
     const totalNumber = await LaboratoryModel.countDocuments()
     return { laboratorys: result, totalNumber: totalNumber }
+  } catch (err) {
+    logger.error('Error', err)
+  }
+}
+
+export async function getAllLaboratories() {
+  try {
+    return await LaboratoryModel.find()
   } catch (err) {
     logger.error('Error', err)
   }

@@ -25,6 +25,11 @@ export const findLaboratory = async (req : CustomRequest<ILaboratoryModel>, res 
   res.json({status:200, msg:result})
 }
 
+export const getAllLaboratories = async (req : CustomRequest<ILaboratoryModel>, res : Response) => {
+  const result = await laboratoryService.getAllLaboratories()
+  res.json({status:200, msg:result})
+}
+
 export const findLaboratoryById = async (req : Request, res : Response) => {
   const laboratoryId = req.params.id
   const result = await laboratoryService.findLaboratoryById(laboratoryId)
@@ -37,6 +42,6 @@ export const laboratorys = async (req : Request, res : Response) => {
   const sortField = req.query.sortField as string
   const sortOrder = parseInt(req.query.sortOrder as string)
   const globalFilter = req.query.globalFilter as string
-  const result = await laboratoryService.getLaboratorys(page, itemsPerPage, sortField, sortOrder as SortOrder, globalFilter)
+  const result = await laboratoryService.getLaboratories(page, itemsPerPage, sortField, sortOrder as SortOrder, globalFilter)
   res.json({status:200, msg:result})
 }
