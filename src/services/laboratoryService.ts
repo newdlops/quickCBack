@@ -43,7 +43,7 @@ export async function getLaboratories(page: number, itemsPerPage: number, sortFi
   const startIndex = (page) * itemsPerPage
   try {
     const sortcriteria = sortField ? { [sortField]: sortOrder} : null
-    const filters = globalFilter ? { $or: [{ laboratoryname: { $regex: globalFilter } }, { email: { $regex: globalFilter}}]} : null
+    const filters = globalFilter ? { $or: [{ laboratoryname: { $regex: globalFilter } }, { laboratoryEngName: { $regex: globalFilter}}]} : null
     const result = await LaboratoryModel.find(filters).skip(startIndex).limit(itemsPerPage).sort(sortcriteria)
     const totalNumber = await LaboratoryModel.countDocuments()
     return { laboratorys: result, totalNumber: totalNumber }

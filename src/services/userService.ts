@@ -1,6 +1,7 @@
 import UserModel, { IUserModel } from '../models/userModel'
 import { logger } from '../../config/logger'
 import { SortOrder } from 'mongoose'
+import {ObjectId} from "mongodb"
 
 export async function createUser(user: IUserModel) {
   try {
@@ -54,7 +55,7 @@ export async function getUsers(page: number, itemsPerPage: number, sortField: st
   const startIndex = (page) * itemsPerPage
   try {
     const sortcriteria = sortField ? { [sortField]: sortOrder} : null
-    const filters = globalFilter ? { $or: [{ username: { $regex: globalFilter } }, { email: { $regex: globalFilter}}]} : null
+    const filters = globalFilter ? { $or: [{ username: { $regex: globalFilter } }, { email: { $regex: globalFilter}}, (globalFilter.length == 24 ? { _id: { $eq: new ObjectId(globalFilter) } }: { none: "" })]} : null
     const result = await UserModel.find(filters).skip(startIndex).limit(itemsPerPage).sort(sortcriteria)
     const totalNumber = await UserModel.countDocuments()
     return { users: result, totalNumber: totalNumber }

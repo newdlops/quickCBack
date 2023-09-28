@@ -36,7 +36,7 @@ export async function findProduct(keyword: string) {
   try {
     return await ProductModel.find({ productname: { $regex: `${keyword}` }}).lean()
   } catch(err) {
-    logger.error(err)
+    logger.error('Error', err)
   }
 }
 

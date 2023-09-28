@@ -7,7 +7,7 @@ export async function createCertification(cert: ICertificationModel) {
     const newCert = new CertificationModel(cert)
     return await newCert.save()
   } catch(err) {
-    logger.error(err)
+    logger.error('Error', err)
   }
 }
 
@@ -16,7 +16,7 @@ export async function createBulkCert(certs: ICertificationModel[]) {
     const newCerts = await CertificationModel.insertMany(certs)
     return newCerts
   } catch(err) {
-    logger.error(err)
+    logger.error('Error', err)
   }
 }
 export async function updateCertification(cert: ICertificationModel) {

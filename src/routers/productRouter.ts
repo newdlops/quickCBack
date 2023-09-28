@@ -5,7 +5,7 @@ const productRouter = express.Router()
 
 productRouter.post('/create', asyncHandler(ProductController.createProduct))
 productRouter.post('/createBulk', asyncHandler(ProductController.createProductBulk))
-productRouter.post('/find', asyncHandler(ProductController.findProduct))
+productRouter.get('/find/:keyword', asyncHandler(ProductController.findProduct))
 
 productRouter.post('/product', asyncHandler(ProductController.createProduct))
 productRouter.get('/product/:id', asyncHandler(ProductController.findProductById))

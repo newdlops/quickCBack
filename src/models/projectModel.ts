@@ -3,7 +3,7 @@ import { IProjectItemModel } from './projectItemModel'
 import { IUserModel } from './userModel'
 
 export interface IProjectModel extends Document {
-  id?: string;
+  _id?: string;
   projectname: string;
   requestUser: IUserModel;
   modelName: string;

@@ -24,3 +24,9 @@ export const findProjectItemByProject = async (req : CustomRequest<IProjectModel
   const result = await projectItemService.findProjectItemByProject(project)
   res.json({status:200, msg:result})
 }
+
+export const updateProjectItem = async (req : CustomRequest<IProjectItemModel>, res : Response) => {
+  const projectItem : IProjectItemModel = req.body
+  const result = await projectItemService.updateProjectItem(projectItem)
+  res.json({status:200, msg:result})
+}
