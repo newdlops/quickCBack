@@ -4,6 +4,8 @@ export interface IUserModel extends Document {
   id?: string;
   username: string;
   password: string;
+  accessToken?: string;
+  accessTokenExpiredAt?: Date;
   email: string;
   createdAt: Date;
   updatedAt: Date;
@@ -15,6 +17,8 @@ export interface IUserModel extends Document {
 const userSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
+  accessToken: { type: String, required: false },
+  accessTokenExpiredAt: { type: Date, required: false},
   email: { type: String, required: false },
   isDelete: { type: Boolean, default: false, required: false},
   deletedAt: { type: Date, required: false},
