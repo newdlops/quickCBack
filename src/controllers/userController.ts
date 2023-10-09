@@ -2,8 +2,6 @@ import { Request, Response } from 'express'
 import { IUserModel } from '../models/userModel'
 import * as userService from '../services/userService'
 import { SortOrder } from 'mongoose'
-import axios from "axios"
-import {logger} from "../../config/logger"
 
 interface CustomRequest<T> extends Request {
   body: T
@@ -68,5 +66,10 @@ export const userTokenLogin = async (req : Request, res : Response) => {
 export const userLogin = async (req : Request, res : Response) => {
   const userLoginInfo = req.body as UserLoginInfo
   const user = await userService.userLogin(userLoginInfo)
+  res.json({status:200, msg: user})
+}
+
+export const userLogout = async (req : Request, res : Response) => {
+  const user = await userService.userLogout(req.params.token)
   res.json({status:200, msg: user})
 }

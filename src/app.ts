@@ -12,6 +12,7 @@ import certRouter from './routers/certificationRouter'
 import cors from 'cors'
 import documentRouter from './routers/documentRouter'
 import laboratoryRouter from './routers/laboratoryRouter'
+import inquiryRouter from './routers/inquiryRouter'
 
 export const app = express()
 const PORT = 3000
@@ -64,6 +65,7 @@ app.use('/product', productRouter)
 app.use('/document', documentRouter)
 app.use('/cert', certRouter)
 app.use('/laboratory', laboratoryRouter)
+app.use('/inquiry', inquiryRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, TypeScript with Express!')

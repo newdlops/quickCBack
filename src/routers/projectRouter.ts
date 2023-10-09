@@ -8,7 +8,8 @@ projectRouter.post('/findByUser', asyncHandler(ProjectController.findProjectByUs
 projectRouter.post('/getDetail', asyncHandler(ProjectController.getProjectDetail))
 
 projectRouter.post('/project', asyncHandler(ProjectController.createProject))
-projectRouter.get('/project/:id', asyncHandler(ProjectController.findProjectByUser))
+projectRouter.get('/project/:id', asyncHandler(ProjectController.getProjectDetail))
+projectRouter.get('/projectByUser/:userid', asyncHandler(ProjectController.findProjectByUser))
 projectRouter.get('/projects', asyncHandler(ProjectController.projects))
 projectRouter.put('/project/:id', asyncHandler(ProjectController.updateProject))
 

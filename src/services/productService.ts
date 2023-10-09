@@ -1,5 +1,5 @@
-import { logger } from '../../config/logger'
-import ProductModel, { IProductModel } from '../models/productModel'
+import {logger} from '../../config/logger'
+import ProductModel, {IProductModel} from '../models/productModel'
 import {SortOrder} from "mongoose"
 
 export async function createProduct(product: IProductModel) {
@@ -34,7 +34,7 @@ export async function updateProduct(product: IProductModel) {
 
 export async function findProduct(keyword: string) {
   try {
-    return await ProductModel.find({ productname: { $regex: `${keyword}` }}).lean()
+    return await ProductModel.find({ productname: { $regex: `${keyword}` }}).populate('requiredDocument').populate('testingLaboratory').lean()
   } catch(err) {
     logger.error('Error', err)
   }

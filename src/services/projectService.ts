@@ -1,16 +1,15 @@
 import { logger } from '../../config/logger'
 import ProjectModel, { IProjectModel } from '../models/projectModel'
-import { IUserModel } from '../models/userModel'
 import * as userService from '../services/userService'
 import * as projectItemService from '../services/projectItemService'
-import {SortOrder} from "mongoose"
-import {ObjectId} from "mongodb"
+import { SortOrder } from 'mongoose'
+import { ObjectId } from 'mongodb'
 
 export async function createProject(form: IProjectModel) {
   try {
     const newProject = new ProjectModel(form)
     return await newProject.save()
-  } catch(err) {
+  } catch (err) {
     logger.error('Error', err)
   }
 }
@@ -27,11 +26,10 @@ export async function updateProject(project: IProjectModel) {
   }
 }
 
-export async function findProjectsByUser(user: IUserModel){
+export async function findProjectsByUser(userid: string){
   try {
-    const projectUser = await userService.findUser(user)
-    const result = await ProjectModel.find({ requestUser: projectUser }).lean()
-    return result
+    const projectUser = await userService.findUserById(userid)
+    return await ProjectModel.find({ requestUser: projectUser }).lean()
   }
   catch (err) {
     logger.error('Error', err)
