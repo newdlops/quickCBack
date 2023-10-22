@@ -21,7 +21,7 @@ export const findInquiryByUser = async (
   req: CustomRequest<IUserModel>,
   res: Response,
 ) => {
-  const user: IUserModel = req.body
+  const user: string = req.params.id
   const result = await inquiryService.findInquiriesByUser(user)
   res.json({ status: 200, msg: result })
 }

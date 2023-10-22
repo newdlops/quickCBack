@@ -13,6 +13,7 @@ import cors from 'cors'
 import documentRouter from './routers/documentRouter'
 import laboratoryRouter from './routers/laboratoryRouter'
 import inquiryRouter from './routers/inquiryRouter'
+import termsRouter from './routers/termsRouter'
 
 export const app = express()
 const PORT = 3000
@@ -47,7 +48,7 @@ const options = {
 const specs = swaggerJsdoc(options)
 
 const corsOptions = {
-  origin: ['http://localhost:3001'],
+  origin: ['http://localhost:3001', 'http://localhost:3002', 'http://localhost:8080'],
 }
 app.use(cors(corsOptions))
 app.use(
@@ -66,6 +67,7 @@ app.use('/document', documentRouter)
 app.use('/cert', certRouter)
 app.use('/laboratory', laboratoryRouter)
 app.use('/inquiry', inquiryRouter)
+app.use('/terms', termsRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, TypeScript with Express!')

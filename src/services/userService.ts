@@ -70,14 +70,14 @@ export async function getUsers(
     const sortCriteria = sortField ? { [sortField]: sortOrder } : null
     const filters = globalFilter
       ? {
-          $or: [
-            { username: { $regex: globalFilter } },
-            { email: { $regex: globalFilter } },
-            globalFilter.length == 24
-              ? { _id: { $eq: new ObjectId(globalFilter) } }
-              : { none: '' },
-          ],
-        }
+        $or: [
+          { username: { $regex: globalFilter } },
+          { email: { $regex: globalFilter } },
+          globalFilter.length == 24
+            ? { _id: { $eq: new ObjectId(globalFilter) } }
+            : { none: '' },
+        ],
+      }
       : null
     const result = await UserModel.find(filters)
       .skip(startIndex)

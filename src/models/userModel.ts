@@ -1,16 +1,17 @@
 import mongoose, { Schema, Document } from 'mongoose'
 
 export interface IUserModel extends Document {
-  id?: string;
-  username: string;
-  password: string;
-  accessToken?: string;
-  accessTokenExpiredAt?: Date;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  isDelete: boolean;
-  deletedAt: Date;
+  id?: string
+  username: string
+  password: string
+  accessToken?: string
+  accessTokenExpiredAt?: Date
+  email: string
+  createdAt: Date
+  updatedAt: Date
+  isDelete: boolean
+  deletedAt: Date
+  phone: string
 }
 
 
@@ -21,7 +22,8 @@ const userSchema = new Schema({
   accessTokenExpiredAt: { type: Date, required: false},
   email: { type: String, required: false },
   isDelete: { type: Boolean, default: false, required: false},
-  deletedAt: { type: Date, required: false},
+  deletedAt: { type: Date, required: false },
+  phone: { type: String, require: false },
 }, { timestamps: true })
 
 const UserModel = mongoose.model<IUserModel>('User', userSchema)

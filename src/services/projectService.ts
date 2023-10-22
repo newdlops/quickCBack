@@ -29,7 +29,7 @@ export async function updateProject(project: IProjectModel) {
 export async function findProjectsByUser(userid: string){
   try {
     const projectUser = await userService.findUserById(userid)
-    return await ProjectModel.find({ requestUser: projectUser }).lean()
+    return await ProjectModel.find({ requestUser: projectUser }, null, { sort: '-_id'}).lean()
   }
   catch (err) {
     logger.error('Error', err)
@@ -39,7 +39,7 @@ export async function findProjectsByUser(userid: string){
 export async function getProjectDetail(project: IProjectModel) {
   try {
     const projectItemList = await projectItemService.findProjectItemByProject(project)
-    const result = await ProjectModel.findById(project._id).lean()
+    const result = await ProjectModel.findById(project._id).populate('requestUser').lean()
     result.projectItems = [...projectItemList]
     return result
   }

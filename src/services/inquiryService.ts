@@ -26,12 +26,10 @@ export async function updateInquiry(inquiry: IInquiryModel) {
   }
 }
 
-export async function findInquiriesByUser(user: IUserModel) {
+export async function findInquiriesByUser(userId: string) {
   try {
-    const inquiryUser = await userService.findUser(user)
-    return await InquiryModel.find({ user: inquiryUser })
-      .select('name _id')
-      .lean()
+    const inquiryUser = await userService.findUserById(userId)
+    return await InquiryModel.find({ user: inquiryUser }, null, { sort: '-_id' }).lean()
   } catch (err) {
     logger.error('Error', err)
   }
