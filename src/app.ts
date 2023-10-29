@@ -48,7 +48,16 @@ const options = {
 const specs = swaggerJsdoc(options)
 
 const corsOptions = {
-  origin: ['http://localhost:3001', 'http://localhost:3002', 'http://localhost:8080'],
+  origin: [
+    'http://localhost:3001',
+    'http://localhost:3002',
+    'http://localhost:8080',
+    'http://localhost:8082',
+    'https://api.quickc.co.kr',
+    'http://api.quickc.co.kr',
+    'https://quickc.co.kr',
+    'http://quickc.co.kr',
+  ],
 }
 app.use(cors(corsOptions))
 app.use(

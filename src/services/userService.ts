@@ -108,14 +108,14 @@ export const userKakaoLogin = async (_token: string) => {
       {
         headers: {
           'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-          Authorization: `Bearer ${_token}`,
+          Authorization: `Bearer ${decodeURI(_token)}`,
         },
       },
     )
     const kakaoAccount = profile.data.kakao_account
     const user = await UserModel.findOne({ email: { $eq: kakaoAccount.email } })
     if (user) {
-      user.accessToken = _token
+      user.accessToken = decodeURI(_token)
       user.accessTokenExpiredAt = dayjs().add(3, 'month').toDate()
       await user.save()
     }
@@ -127,7 +127,7 @@ export const userKakaoLogin = async (_token: string) => {
 
 export const userTokenLogin = async (_token: string) => {
   try {
-    const user = await UserModel.findOne({ accessToken: { $eq: _token } })
+    const user = await UserModel.findOne({ accessToken: { $eq: decodeURI(_token) } })
     if (user) {
       const isValid = dayjs(user.accessTokenExpiredAt).isAfter(dayjs())
       if (isValid) {
@@ -155,7 +155,7 @@ export const userLogin = async (userLoginInfo: UserLoginInfo) => {
     })
     if (user) {
       const hash = sha256(randomUUID(), 'key')
-      user.accessToken = Base64.stringify(hash)
+      // user.accessToken = Base64.stringify(hash).replace('/', 's')
       user.accessTokenExpiredAt = dayjs().add(3, 'month').toDate()
       return await user.save()
     }
@@ -167,7 +167,7 @@ export const userLogin = async (userLoginInfo: UserLoginInfo) => {
 
 export const userLogout = async (_token: string) => {
   try {
-    const user = await UserModel.findOne({ accessToken: { $eq: _token } })
+    const user = await UserModel.findOne({ accessToken: { $eq: decodeURI(_token) } })
     if (user) {
       user.accessToken = null
       user.accessTokenExpiredAt = null

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  qback:
+    image: quickc:v0.01
+      #ports:
+    #- "3000:3000"
+    #volumes:
+      #- /home/ec2-user/docker/quickback/app:/usr/src/app
+    deploy:
+      labels:
+        - traefik.http.services.qback.loadbalancer.server.port=3000
+    networks:
+      - traefiknet
+networks:
+  traefiknet:
+    external: true
