@@ -38,7 +38,7 @@ const options = {
         description: 'local environment',
       },
       {
-        url: 'https://api.zoodoongi.net',
+        url: 'https://api.quickc.co.kr',
         description: 'dev server',
       },
     ],
@@ -57,6 +57,8 @@ const corsOptions = {
     'http://api.quickc.co.kr',
     'https://quickc.co.kr',
     'http://quickc.co.kr',
+    'http://admin.quickc.co.kr',
+    'https://admin.quickc.co.kr',
   ],
 }
 app.use(cors(corsOptions))
