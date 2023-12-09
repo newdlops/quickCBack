@@ -1,11 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose'
+import { IUserModel } from './userModel'
 
+/* 프로젝트에 합침, 사용하지 않으나 남겨둠 */
 export interface IInquiryModel extends Document {
   _id?: string
   name: string
   productName: string
+  manufactureName: string
   content: string
-  user: string
+  requestUser: IUserModel
   reply: string
   contact: string
 }

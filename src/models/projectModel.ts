@@ -42,6 +42,16 @@ const projectSchema = new Schema(
     ],
     /* 인증구분 */
     certType: [{ type: String, required: false }],
+    /* 제품명 */
+    productName: { type: String, required: false },
+    /* 문의내용 */
+    content: { type: String, required: false },
+    /* 신청인 */
+    user: { type: String, required: false },
+    /* 답변내용 */
+    reply: { type: String, required: false },
+    /* 신청인 연락처 */
+    contact: { type: String, required: false },
   },
   { timestamps: true },
 )
