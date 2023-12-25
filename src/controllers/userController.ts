@@ -69,6 +69,13 @@ export const userLogin = async (req : Request, res : Response) => {
   res.json({status:200, msg: user})
 }
 
+export const adminLogin = async (req : Request, res : Response) => {
+  const userLoginInfo = req.body as UserLoginInfo
+  console.log(userLoginInfo)
+  const user = await userService.adminLogin(userLoginInfo)
+  res.json({status:200, msg: user})
+}
+
 export const userLogout = async (req : Request, res : Response) => {
   const user = await userService.userLogout(req.params.token)
   res.json({status:200, msg: user})

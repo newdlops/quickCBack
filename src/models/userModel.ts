@@ -12,6 +12,7 @@ export interface IUserModel extends Document {
   isDelete: boolean
   deletedAt: Date
   phone: string
+  isAdmin: boolean
 }
 
 
@@ -24,6 +25,7 @@ const userSchema = new Schema({
   isDelete: { type: Boolean, default: false, required: false},
   deletedAt: { type: Date, required: false },
   phone: { type: String, require: false },
+  isAdmin: { type: Boolean, require: false, default: false },
 }, { timestamps: true })
 
 const UserModel = mongoose.model<IUserModel>('User', userSchema)

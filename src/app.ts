@@ -14,6 +14,10 @@ import documentRouter from './routers/documentRouter'
 import laboratoryRouter from './routers/laboratoryRouter'
 import inquiryRouter from './routers/inquiryRouter'
 import termsRouter from './routers/termsRouter'
+import noticeRouter from './routers/noticeRouter'
+import faqRouter from './routers/faqRouter'
+import wrongInformationRouter from './routers/wrongInformationRouter'
+import requestInformationRouter from './routers/requestinfoRouter'
 
 export const app = express()
 const PORT = 3000
@@ -59,6 +63,7 @@ const corsOptions = {
     'http://quickc.co.kr',
     'http://admin.quickc.co.kr',
     'https://admin.quickc.co.kr',
+    'http://222.110.24.169',
   ],
 }
 app.use(cors(corsOptions))
@@ -79,7 +84,10 @@ app.use('/cert', certRouter)
 app.use('/laboratory', laboratoryRouter)
 app.use('/inquiry', inquiryRouter)
 app.use('/terms', termsRouter)
-
+app.use('/notice', noticeRouter)
+app.use('/faq', faqRouter)
+app.use('/wrongInformation', wrongInformationRouter)
+app.use('/requestInformation', requestInformationRouter)
 app.get('/', (req, res) => {
   res.send('Hello, TypeScript with Express!')
 })

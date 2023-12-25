@@ -11,6 +11,7 @@ export interface IInquiryModel extends Document {
   requestUser: IUserModel
   reply: string
   contact: string
+  photos: string[]
 }
 
 const inquirySchema = new Schema(
@@ -21,6 +22,7 @@ const inquirySchema = new Schema(
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     reply: { type: String, required: false},
     contact: { type: String, required: true },
+    photos: [{ type: String, required: true }],
   },
   { timestamps: true },
 )

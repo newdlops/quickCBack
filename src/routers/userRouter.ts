@@ -19,4 +19,5 @@ userRouter.get('/kakaoLogin/:token', asyncHandler(UserController.userKakaoLogin)
 userRouter.get('/userTokenLogin/:token', asyncHandler(UserController.userTokenLogin))
 userRouter.get('/logout/:token', asyncHandler(UserController.userLogout))
 userRouter.post('/login', asyncHandler(UserController.userLogin))
+userRouter.post('/adminlogin', asyncHandler(UserController.adminLogin))
 export default userRouter

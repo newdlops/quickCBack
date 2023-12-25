@@ -16,6 +16,7 @@ export interface IProjectModel extends Document {
   updatedAt: Date
   checkDate: Date
   certType: string[]
+  photos: string[]
 }
 
 const projectSchema = new Schema(
@@ -52,6 +53,7 @@ const projectSchema = new Schema(
     reply: { type: String, required: false },
     /* 신청인 연락처 */
     contact: { type: String, required: false },
+    photos: [{ type: String, required: false }],
   },
   { timestamps: true },
 )

@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/morgan": "^1.9.4",
+    "aws-sdk": "^2.1520.0",
     "axios": "^1.5.1",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
@@ -22,6 +23,7 @@
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
   },

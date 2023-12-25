@@ -3,17 +3,21 @@ import * as inquiryService from '../services/inquiryService'
 import { IInquiryModel } from '../models/inquiryModel'
 import { IUserModel } from '../models/userModel'
 import { SortOrder } from 'mongoose'
+import { s3 } from '../../config/s3'
+import fs from 'fs'
+
+
 
 interface CustomRequest<T> extends Request {
   body: T
 }
 
 export const createInquiry = async (
-  req: CustomRequest<IInquiryModel>,
+  req: any,
   res: Response,
 ) => {
-  const newInquiry: IInquiryModel = req.body
-  const result = await inquiryService.createInquiry(newInquiry)
+  const newInquiry: any = req.body
+  const result = await inquiryService.createInquiry(newInquiry, req.files)
   res.json({ status: 200, msg: result })
 }
 

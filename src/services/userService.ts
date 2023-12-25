@@ -155,13 +155,31 @@ export const userLogin = async (userLoginInfo: UserLoginInfo) => {
     })
     if (user) {
       const hash = sha256(randomUUID(), 'key')
-      // user.accessToken = Base64.stringify(hash).replace('/', 's')
+      user.accessToken = Base64.stringify(hash).replace('/', 's')
       user.accessTokenExpiredAt = dayjs().add(3, 'month').toDate()
       return await user.save()
     }
     return null
   } catch (err) {
     logger.error('userLogin Error', err)
+  }
+}
+
+export const adminLogin = async (userLoginInfo: UserLoginInfo) => {
+  try {
+    const user = await UserModel.findOne({
+      email: { $eq: userLoginInfo.email },
+      password: { $eq: userLoginInfo.password },
+    })
+    if (user && user.isAdmin) {
+      const hash = sha256(randomUUID(), 'key')
+      user.accessToken = Base64.stringify(hash).replace('/', 's')
+      user.accessTokenExpiredAt = dayjs().add(3, 'month').toDate()
+      return await user.save()
+    }
+    return null
+  } catch (err) {
+    logger.error('adminLogin Error', err)
   }
 }
 
