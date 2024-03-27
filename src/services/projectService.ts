@@ -36,10 +36,10 @@ export async function findProjectsByUser(userid: string){
   }
 }
 
-export async function getProjectDetail(project: IProjectModel) {
+export async function getProjectDetail(id: string) {
   try {
-    const projectItemList = await projectItemService.findProjectItemByProject(project)
-    const result = await ProjectModel.findById(project._id).populate('requestUser').lean()
+    const result = await ProjectModel.findById(id).populate('requestUser').lean()
+    const projectItemList = await projectItemService.findProjectItemByProject(result)
     result.projectItems = [...projectItemList]
     return result
   }

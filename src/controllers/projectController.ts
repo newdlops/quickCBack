@@ -21,8 +21,8 @@ export const findProjectByUser = async (req : Request, res : Response) => {
 }
 
 export const getProjectDetail = async (req : CustomRequest<IProjectModel>, res : Response) => {
-  const project: IProjectModel = req.body
-  const result = await projectService.getProjectDetail(project)
+  const id: string = req.params.id
+  const result = await projectService.getProjectDetail(id)
   res.json({status:200, msg:result})
 }
 
