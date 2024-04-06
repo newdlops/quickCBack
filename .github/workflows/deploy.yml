@@ -1,7 +1,6 @@
 name: quickC node server deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
