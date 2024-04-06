@@ -3,7 +3,7 @@ name: quickC node server deploy
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
