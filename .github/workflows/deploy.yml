@@ -36,3 +36,8 @@ jobs:
         script: |
           cd docker/quickback/app
           ls
+          rm -rf build
+          cd ..
+          docker stack rm qback
+          docker stack deploy -c docker-compose.yml qback
+          
