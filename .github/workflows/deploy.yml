@@ -23,7 +23,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        source: "./package.json, ./build/config/*, ./build/src/*"
+        source: "./build/config/*, ./build/src/*"
         target: "./docker/quickback/app"
 
     - name: Restart Docker Container
