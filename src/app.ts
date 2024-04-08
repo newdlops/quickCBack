@@ -77,20 +77,6 @@ app.use(
 )
 app.use(morganMiddleware)
 
-// 모든 요청에 대한 미들웨어
-app.use((req, res, next) => {
-  // 요청이 API 요청인지 SPA 페이지 요청인지 판별
-  const isApiRequest = req.headers.accept && req.headers.accept === 'application/json';
-  if (!isApiRequest) {
-    // SPA 페이지 요청 처리
-    // 예시: SPA의 진입점 파일을 반환
-    // SPA 라우팅을 처리하기 위해 진입점 페이지로 리다이렉트할 수 있습니다.
-    // 이 부분은 실제 SPA 파일이 호스팅되는 환경에 맞게 조정해야 합니다.
-    // 예: res.sendFile(path.join(__dirname, 'path/to/your/spa/index.html'));
-    return res.send("This would serve the SPA entry point for /user")
-  }
-})
-
 //스웨거 페이지
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 app.use('/project', projectRouter)
