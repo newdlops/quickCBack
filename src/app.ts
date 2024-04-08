@@ -23,7 +23,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware'
 export const app = express()
 const PORT = 3000
 
-const clientWebServerUrl = 'http://admin.quickc.co.kr'
+const clientWebServerUrl = 'https://admin.quickc.co.kr'
 
 /*
   스웨거 설정
