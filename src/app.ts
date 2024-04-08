@@ -18,9 +18,12 @@ import noticeRouter from './routers/noticeRouter'
 import faqRouter from './routers/faqRouter'
 import wrongInformationRouter from './routers/wrongInformationRouter'
 import requestInformationRouter from './routers/requestinfoRouter'
+import { createProxyMiddleware } from 'http-proxy-middleware'
 
 export const app = express()
 const PORT = 3000
+
+const clientWebServerUrl = 'http://admin.quickc.co.kr'
 
 /*
   스웨거 설정
@@ -88,9 +91,21 @@ app.use('/notice', noticeRouter)
 app.use('/faq', faqRouter)
 app.use('/wrongInformation', wrongInformationRouter)
 app.use('/requestInformation', requestInformationRouter)
-app.get('/', (req, res) => {
-  res.send('Hello, TypeScript with Express!')
-})
+
+app.use(
+  createProxyMiddleware({
+    target: clientWebServerUrl,
+    changeOrigin: true,
+    logLevel: 'debug',
+    pathRewrite: (path, req) => {
+      // API 요청이 아닌 경우, 원래 경로를 유지합니다.
+      return path
+    },
+    router: {
+      // 필요에 따라 동적으로 타겟을 변경할 수 있습니다.
+    },
+  }),
+)
 
 const connectDB = new Database()
 connectDB
