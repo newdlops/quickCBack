@@ -97,8 +97,7 @@ app.use(
     target: clientWebServerUrl,
     changeOrigin: true,
     pathRewrite: (path, req) => {
-      // API 요청이 아닌 경우, 원래 경로를 유지합니다.
-      return path
+      return ''
     },
     router: {
       // 필요에 따라 동적으로 타겟을 변경할 수 있습니다.
