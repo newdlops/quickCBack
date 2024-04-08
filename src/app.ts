@@ -94,7 +94,7 @@ app.use('/wrongInformation', wrongInformationRouter)
 app.use('/requestInformation', requestInformationRouter)
 
 app.get("/*", (req, res) => {
-  res.redirect(clientWebServerUrl);
+  res.redirect(clientWebServerUrl)
 })
 
 app.use(
