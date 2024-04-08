@@ -93,6 +93,10 @@ app.use('/faq', faqRouter)
 app.use('/wrongInformation', wrongInformationRouter)
 app.use('/requestInformation', requestInformationRouter)
 
+app.get("/*", (req, res) => {
+  res.redirect(clientWebServerUrl);
+})
+
 app.use(
   createProxyMiddleware({
     target: clientWebServerUrl,
